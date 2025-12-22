@@ -64,14 +64,30 @@ export default function Home() {
 }
 
 
-export async function productsLoader(){
-     try{
-     const response = await apiClient.get("/products"); 
-  return  response.data; 
-  }catch(error){
-    throw new Response(
-      error.response?.data?.errorMessage || error.message|| "Failed to fetch products. Please try again.",
-      {status:error.status || 500}
-    );
-   }
+// export async function productsLoader(){
+//      try{
+//      const response = await apiClient.get("/products"); 
+//   return  response.data; 
+//   }catch(error){
+//     throw new Response(
+//       error.response?.data?.errorMessage || error.message|| "Failed to fetch products. Please try again.",
+//       {status:error.status || 500}
+//     );
+//    }
+// }
+
+export async function productsLoader() {
+  try {
+    const response = await apiClient.get("/products");
+    return response.data;
+  } catch (error) {
+    const message =
+      error.response?.data?.errorMessage ||
+      "Server is waking up. Please try again in a moment.";
+
+    const status = error.response?.status || 500;
+
+    throw new Response(message, { status });
+  }
 }
+
