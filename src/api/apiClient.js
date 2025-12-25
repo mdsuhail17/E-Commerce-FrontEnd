@@ -10,7 +10,7 @@ const apiClient = axios.create({
     "Content-Type": "application/json",
     Accept: 'application/json',
   },
-  timeout: 10000, // 240 seconds timeout
+  timeout: 10000, // 1 seconds timeout
   // Do not send cookies by default. JWT is attached via Authorization header from localStorage.
   withCredentials: false,
 
