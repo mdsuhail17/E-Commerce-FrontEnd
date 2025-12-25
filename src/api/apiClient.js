@@ -3,17 +3,17 @@ import Cookies from 'js-cookie';
 
 const apiClient = axios.create({
 
-  baseURL:import.meta.env.VITE_API_BASE_URL,
-  
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 
-  headers:{
-      "Content-Type": "application/json",
-      Accept: 'application/json',
+
+  headers: {
+    "Content-Type": "application/json",
+    Accept: 'application/json',
   },
-  timeout: 240000, // 240 seconds timeout
+  timeout: 10000, // 240 seconds timeout
   // Do not send cookies by default. JWT is attached via Authorization header from localStorage.
   withCredentials: false,
-  
+
 });
 
 apiClient.interceptors.request.use(
@@ -23,8 +23,8 @@ apiClient.interceptors.request.use(
     if (jwtToken) {
       config.headers.Authorization = `Bearer ${jwtToken}`;
     }
-      // Only fetch CSRF token for non-safe methods
-   
+    // Only fetch CSRF token for non-safe methods
+
     return config;
   },
   (error) => Promise.reject(error)
