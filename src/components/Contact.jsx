@@ -194,7 +194,7 @@ export async function contactAction({request, params}){
      message: data.get("message")
   };
      try{
-      await apiClient.post("/contacts",contactData);
+      await apiClient.post("/api/v1/contacts",contactData);
       return{success:true};
     //  return redirect("/home");  // to redirect the used to home page after submitting the form
 
@@ -211,7 +211,7 @@ export async function contactAction({request, params}){
 
 export async function contactLoader() {
   try {
-    const response = await apiClient.get("/contacts"); // Axios GET Request
+    const response = await apiClient.get("/api/v1/contacts"); // Axios GET Request
     return response.data;
   } catch (error) {
     throw new Response(

@@ -92,7 +92,7 @@ const user = useSelector(selectUser);
     setIsProcessing(true);
 
     try {
-      const response = await apiClient.post("/payment/create-payment-intent", {
+      const response = await apiClient.post("/api/v1/payment/create-payment-intent", {
         amount: totalPrice * 100,
         currency: "usd",
       });
@@ -126,7 +126,7 @@ const user = useSelector(selectUser);
         toast.success("Payment successful!");
        
         try {
-          await apiClient.post("/orders", {
+          await apiClient.post("/api/v1/orders", {
             totalPrice: totalPrice,
             paymentId: paymentIntent.id,
             paymentStatus: paymentIntent.status,

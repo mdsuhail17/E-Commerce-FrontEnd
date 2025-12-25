@@ -326,7 +326,7 @@ export default function Profile() {
 
 export async function profileLoader() {
   try {
-    const response = await apiClient.get("/profile"); // Axios GET Request
+    const response = await apiClient.get("/api/v1/profile"); // Axios GET Request
     return response.data;
   } catch (error) {
     throw new Response(
@@ -352,7 +352,7 @@ export async function profileAction({ request }) {
     country: data.get("country"),
   };
   try {
-    const response = await apiClient.put("/profile", profileData);
+    const response = await apiClient.put("/api/v1/profile", profileData);
     return { success: true, profileData: response.data };
   } catch (error) {
     if (error.response?.status === 400) {

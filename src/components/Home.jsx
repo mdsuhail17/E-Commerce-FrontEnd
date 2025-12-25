@@ -78,7 +78,7 @@ export default function Home() {
 
 export async function productsLoader() {
   try {
-    const response = await apiClient.get("/products");
+    const response = await apiClient.get("/api/v1/products");
     return response.data;
   } catch (error) {
     const message =
